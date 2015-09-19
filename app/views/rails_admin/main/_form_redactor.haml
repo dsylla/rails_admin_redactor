@@ -4,19 +4,9 @@
   (function() {
     $(document).on('rails_admin.dom_ready', function() {
       var $redactorTextareas = $('textarea[data-richtext=redactor]:not(.redactor-initialized)');
-
       if($redactorTextareas.length > 0) {
-        var jsPath = (#{field.js_location.to_json});
-        var cssPath = (#{field.css_location.to_json});
-
-        if($('link[href="' + cssPath + '"]').length === 0) {
-          $('head').append('<link href="' + cssPath + '" rel="stylesheet" media="all" type="text/css">');
-        }
-
         if($.fn.redactor) {
           onRedactorReady();
-        }else{
-          $.getScript(jsPath, onRedactorReady);
         }
       }
     });
