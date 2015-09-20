@@ -16,6 +16,12 @@
         var $redactorTextarea = $(this);
         var options = $redactorTextarea.data('options');
 
+        csrf_token = $('meta[name=csrf-token]').attr('content');
+        csrf_param = $('meta[name=csrf-param]').attr('content');
+        if csrf_param != undefined && csrf_token != undefined {
+          params = csrf_param + "=" + encodeURIComponent(csrf_token);
+        }
+
         $redactorTextarea.addClass('redactor-initialized').redactor(options);
       });
     };
